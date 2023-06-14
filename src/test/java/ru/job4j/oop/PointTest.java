@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.offset;
 class PointTest {
 
     @Test
-    void distance() {
+    void when00and20distanceThen2() {
         Point a = new Point(0, 0);
         Point b = new Point(2, 0);
         double rsl = a.distance(b);
@@ -17,7 +17,7 @@ class PointTest {
     }
 
     @Test
-    void distance3d() {
+    void when000and222distance3dThen3dot464() {
         Point a = new Point(0, 0, 0);
         Point b = new Point(2, 2, 2);
         double rsl = a.distance3d(b);
