@@ -4,9 +4,9 @@ public class Broken {
     public static final String NEW_VALUE = "";
     private int sizeOfEmpty = 10;
     private String name;
-    public String surname;
+    private String surname;
 
-    Broken() { }
+    public Broken() { }
 
     public void echo() { }
 
