@@ -2,8 +2,7 @@ package ru.job4j.pojo;
 
 public class Library {
     public static void bookPrint(Book[] books) {
-        for (int i = 0; i < books.length; i++) {
-            Book lib = books[i];
+        for (Book lib : books) {
             System.out.println("Книга " + lib.getNameBook() + " содержит "
                     + lib.getPages() + " страниц");
         }
@@ -23,9 +22,8 @@ public class Library {
         books[0] = book3;
         books[3] = cleanCode;
         bookPrint(books);
-        for (int i = 0; i < books.length; i++) {
-            Book lib = books[i];
-            if (lib.getNameBook().equals("Clean code")) {
+        for (Book lib : books) {
+            if ("Clean code".equals(lib.getNameBook())) {
                 System.out.println("Книга " + lib.getNameBook() + " содержит "
                         + lib.getPages() + " страниц");
             }
