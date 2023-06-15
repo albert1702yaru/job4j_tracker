@@ -1,6 +1,7 @@
 package ru.job4j.oop;
 
 public class Ball {
+    int f = 1;
 
     public void tryRun(boolean condition) {
         if (condition) {
