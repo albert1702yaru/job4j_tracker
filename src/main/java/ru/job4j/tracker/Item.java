@@ -6,6 +6,9 @@ import java.time.format.DateTimeFormatter;
 public class Item {
     private int id;
     private String name;
+    private static final DateTimeFormatter FORMATTER
+            = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
+    public LocalDateTime created = LocalDateTime.now();
 
     @Override
     public String toString() {
@@ -15,10 +18,6 @@ public class Item {
                 + ", created=" + created.format(FORMATTER)
                 + '}';
     }
-
-    public LocalDateTime created = LocalDateTime.now();
-
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
 
     public Item() { }
 
