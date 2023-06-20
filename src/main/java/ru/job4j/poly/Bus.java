@@ -13,6 +13,7 @@ public class Bus implements Transport {
 
     @Override
     public double refuel(int fuel) {
+        System.out.println("Автобус заправлен");
         return fuel * 63.35;
     }
 }
