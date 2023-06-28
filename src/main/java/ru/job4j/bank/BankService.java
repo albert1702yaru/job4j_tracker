@@ -58,7 +58,8 @@ public class BankService {
             regSrc.setBalance(regSrc.getBalance() - amount);
             Account regDest = findByRequisite(destPassport, destRequisite);
             if (regDest == null) {
-                addAccount(destPassport, new Account(destRequisite, 0));
+                addAccount(destPassport, new Account(destRequisite, 0D));
+                regDest = findByRequisite(destPassport, destRequisite);
             }
             regDest.setBalance(regDest.getBalance() + amount);
             return true;
