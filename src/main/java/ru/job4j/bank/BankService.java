@@ -78,8 +78,9 @@ public class BankService {
      * @return возращает сопоставленый счет, в противном случае null
      */
     public Account findByRequisite(String passport, String requisite) {
-        if (findByPassport(passport) != null) {
-            for (Account account : users.get(new User(passport, ""))) {
+        User user = findByPassport(passport);
+        if (user != null) {
+            for (Account account : users.get(user)) {
                 if (account.getRequisite().equals(requisite)) {
                     return account;
                 }
@@ -106,18 +107,18 @@ public class BankService {
      */
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
-        if (findByPassport(srcPassport) == null || findByPassport(destPassport) == null) {
-            return false;
-        }
-        if (findByRequisite(destPassport, destRequisite) == null) {
-            addAccount(destPassport, new Account(destRequisite, 0D));
-        }
-        Account regSrc = findByRequisite(srcPassport, srcRequisite);
-        Account regDest = findByRequisite(destPassport, destRequisite);
-        if (regSrc != null && regSrc.getBalance() >= amount) {
-            regSrc.setBalance(regSrc.getBalance() - amount);
-            regDest.setBalance(regDest.getBalance() + amount);
-            return true;
+        if (findByPassport(srcPassport) != null && findByPassport(destPassport) != null) {
+            Account srcAccount = findByRequisite(srcPassport, srcRequisite);
+            Account destAccount = findByRequisite(destPassport, destRequisite);
+            if (srcAccount != null && srcAccount.getBalance() >= amount) {
+                if (destAccount == null) {
+                    addAccount(destPassport, new Account(destRequisite, 0));
+                    destAccount = findByRequisite(destPassport, destRequisite);
+                }
+                srcAccount.setBalance(srcAccount.getBalance() - amount);
+                destAccount.setBalance(destAccount.getBalance() + amount);
+                return true;
+            }
         }
         return false;
     }
