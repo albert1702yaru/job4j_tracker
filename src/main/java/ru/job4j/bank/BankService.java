@@ -84,9 +84,7 @@ public class BankService {
                 if (account.getRequisite().equals(requisite)) {
                     return account;
                 }
-            }
-//            addAccount(passport, new Account(requisite, 0D));
-//            return findByRequisite(passport, requisite);
+            }      return findByRequisite(passport, requisite);
         }
         return null;
     }
