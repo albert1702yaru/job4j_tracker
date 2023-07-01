@@ -85,6 +85,8 @@ public class BankService {
                     return account;
                 }
             }
+            addAccount(passport, new Account(requisite, 0D));
+            return findByRequisite(passport, requisite);
         }
         return null;
     }
@@ -107,18 +109,12 @@ public class BankService {
      */
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
-        if (findByPassport(srcPassport) != null && findByPassport(destPassport) != null) {
             Account srcAccount = findByRequisite(srcPassport, srcRequisite);
             Account destAccount = findByRequisite(destPassport, destRequisite);
-            if (srcAccount != null && srcAccount.getBalance() >= amount) {
-                if (destAccount == null) {
-                    addAccount(destPassport, new Account(destRequisite, 0));
-                    destAccount = findByRequisite(destPassport, destRequisite);
-                }
+            if (srcAccount != null && srcAccount.getBalance() >= amount && destAccount != null) {
                 srcAccount.setBalance(srcAccount.getBalance() - amount);
                 destAccount.setBalance(destAccount.getBalance() + amount);
                 return true;
-            }
         }
         return false;
     }
