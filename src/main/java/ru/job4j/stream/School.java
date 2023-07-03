@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class School {
     public List<Student> collect(List<Student> students, Predicate<Student> predicate) {
         return students.stream()
-                .filter(s -> predicate.test(s))
+                .filter(predicate)
                 .collect(Collectors.toList());
     }
 }
