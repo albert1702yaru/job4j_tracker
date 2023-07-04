@@ -1,9 +1,10 @@
-package ru.job4j.stream.mapto;
+package ru.job4j.stream;
 
-import java.util.Arrays;
-import java.util.List;
+import ru.job4j.stream.mapTo.Person;
 
-public class MapToIntExample {
+import java.util.*;
+
+public class SumExample {
     public static void main(String[] args) {
         List<Person> people = Arrays.asList(
                 new Person("Михаил", 35),
@@ -13,10 +14,8 @@ public class MapToIntExample {
                 new Person("Анна", 29)
         );
         int sum = people.stream()
-                .filter(e -> e.getAge() > 25)
                 .mapToInt(Person::getAge)
-                .peek(System.out::println)
                 .sum();
-        System.out.println("Сумма: " + sum);
+        System.out.println(sum);
     }
 }
