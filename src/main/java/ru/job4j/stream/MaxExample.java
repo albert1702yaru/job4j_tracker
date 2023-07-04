@@ -1,10 +1,11 @@
 package ru.job4j.stream;
 
-import ru.job4j.stream.mapto.Person;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 
-import java.util.*;
-
-public class SumExample {
+public class MaxExample {
     public static void main(String[] args) {
         List<Person> people = Arrays.asList(
                 new Person("Михаил", 35),
@@ -13,9 +14,9 @@ public class SumExample {
                 new Person("Виктор", 16),
                 new Person("Анна", 29)
         );
-        int sum = people.stream()
-                .mapToInt(Person::getAge)
-                .sum();
-        System.out.println(sum);
+        Optional<Person> youngestPerson = people.stream()
+                .max(Comparator.comparing(Person::getAge));
+        int age = youngestPerson.get().getAge();
+        System.out.println(age);
     }
 }

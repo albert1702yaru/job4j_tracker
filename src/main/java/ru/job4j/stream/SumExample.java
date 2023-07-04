@@ -1,10 +1,8 @@
 package ru.job4j.stream;
 
-import ru.job4j.stream.mapto.Person;
-
 import java.util.*;
 
-public class AverageExample {
+public class SumExample {
     public static void main(String[] args) {
         List<Person> people = Arrays.asList(
                 new Person("Михаил", 35),
@@ -13,10 +11,9 @@ public class AverageExample {
                 new Person("Виктор", 16),
                 new Person("Анна", 29)
         );
-        OptionalDouble average = people.stream()
+        int sum = people.stream()
                 .mapToInt(Person::getAge)
-                .average();
-        double avg = average.getAsDouble();
-        System.out.println(avg);
+                .sum();
+        System.out.println(sum);
     }
 }
