@@ -4,14 +4,6 @@ import java.util.stream.Stream;
 
 public class Card {
 
-    @Override
-    public String toString() {
-        return "Card{"
-                + "suit=" + suit
-                + ", value=" + value
-                +  '}';
-    }
-
     private enum Suit {
         Diamonds, Hearts, Spades, Clubs
     }
@@ -27,6 +19,14 @@ public class Card {
         this.suit = suit;
         this.value = value;
 
+    }
+
+    @Override
+    public String toString() {
+        return "Card{"
+                + "suit=" + suit
+                + ", value=" + value
+                +  '}';
     }
 
     public static void main(String[] args) {
